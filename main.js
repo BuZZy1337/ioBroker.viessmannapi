@@ -297,16 +297,16 @@ class Viessmannapi extends utils.Adapter {
       for (const device of installation['gateways'][currentGatewayIndex - 1]['devices']) {
         if (this.config.devicelist) {
           const deviceArray = this.config.devicelist.replace(/\s/g, '').split(',');
-          if (!deviceArray.includes(device.id.toString())) {
+         /* if (!deviceArray.includes(device.id.toString())) {
             this.log.debug('ignore for update: ' + device.id);
             continue;
-          }
+          } */
         }
         for (const element of statusArray) {
           let url = element.url.replace('$id', device.id);
           url = url.replace('$installation', installation.id);
           url = url.replace('$gatewaySerial', device.gatewaySerial);
-          if (
+         /* if (
             !ignoreFilter &&
             device.roles.some((role) => {
               if (role.includes('type:gateway')) {
@@ -319,7 +319,7 @@ class Viessmannapi extends utils.Adapter {
           ) {
             this.log.debug('ignore ' + device.deviceType);
             continue;
-          }
+          } */
           this.log.debug('Start Update for ' + device.id);
           await this.requestClient({
             method: 'get',
